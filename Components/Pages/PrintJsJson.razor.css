@@ -27,3 +27,6 @@ button.transmit-json:hover{
 textarea {
     resize: none;
 }
+#editor_check {
+    display: none;
+}

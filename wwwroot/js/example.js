@@ -24,11 +24,16 @@ function printJson() {
     printJS({printable:  editor1.json_value, properties: keys_array, type: 'json'});
 }
 
-function doBeauty() {
-    editor1.value  = inp.value
-    if (!editor1.is_valid()){
-        alert(`JSON is not valid, please fix it`);
-        editor1.value  = ``;
+function doBeauty(inpValue) {
+    editor1.value  = inpValue;
+}
+
+function checkTextByPrintEditor() {
+    editor_check.value = inp.value
+    if (!editor_check.is_valid()){
+        return false;
     }
     
+    editor_check.value  = ``;
+    return true;
 }

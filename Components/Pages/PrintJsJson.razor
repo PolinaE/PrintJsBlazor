@@ -1,21 +1,39 @@
 ﻿@page "/print-js-json"
+@inject IJSRuntime JS
+@inject SweetAlertService Swal
+@rendermode InteractiveServer
 
 <div class="container" >
     
     <h3>Let's print JSON</h3>
     <div class="flex-row-inp">
         
-        <textarea class="form-control" name="to-json"  id="inp" />
+        <textarea class="form-control" name="to-json"  id="inp"  @bind="InputJson" />
         
-        <button class="transmit-json" title="Transmit json to beauty view" type="button" onclick="doBeauty()">
+        <button class="transmit-json" title="Transmit json to beauty view" type="button" @onclick="TransmitCode">
             <img src="../static/icons/transmit.svg"/>
         </button>
 
         <json-editor id='editor1'></json-editor>
+        <json-editor id='editor_check'></json-editor>
     
     </div> 
          
     <button class="btn btn-dark print-json" type="button" onclick="printJson()">
         Print JSON
     </button>
+
 </div>
+
+
+@code {
+
+    private string InputJson { get; set; } = "";
+    private async Task TransmitCode()
+    {
+        var checkJson = await JS.InvokeAsync<bool>("checkTextByPrintEditor");
+        if (!checkJson)
+            await Swal.FireAsync("Oops...","JSON is not valid, please fix it", "error");
+        else await JS.InvokeVoidAsync("doBeauty", InputJson);
+    }
+}
