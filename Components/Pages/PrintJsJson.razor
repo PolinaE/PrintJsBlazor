@@ -19,7 +19,7 @@
     
     </div> 
          
-    <button class="btn btn-dark print-json" type="button" onclick="printJson()">
+    <button class="btn btn-dark print-json" type="button" @onclick="PrintJson">
         Print JSON
     </button>
 
@@ -28,12 +28,33 @@
 
 @code {
 
-    private string InputJson { get; set; } = "";
+    private string InputJson { get; set; } = @"[{""value"":""Иванов Виктор"",""unrestricted_value"":""Витя"",""data:surname"":""Иванов"",""data:name"":""Виктор"",""data:patronymic"":""null"",""data:gender"":""MALE""},
+   {""value"":""Иванченко Александр"",""unrestricted_value"":""Саша"",""data:surname"":""Иванченко"",""data:name"":""Александр"",""data:patronymic"":null,""data:gender"":""MALE""},{""value"":""Екатерина Юрьевна"",""unrestricted_value"":""Катя"",
+      ""data:surname"":null,""data:name"":""Екатерина"",""data:patronymic"":""Юрьевна"",""data:gender"":""FEMALE"" }]";
+    private async Task<bool> CheckJson() => await JS.InvokeAsync<bool>("checkTextByPrintEditor");
+    private async Task<bool> JsonIsArray() => await JS.InvokeAsync<bool>("jsonIsArray");
     private async Task TransmitCode()
     {
-        var checkJson = await JS.InvokeAsync<bool>("checkTextByPrintEditor");
-        if (!checkJson)
+        if (!(await CheckJson()))
             await Swal.FireAsync("Oops...","JSON is not valid, please fix it", "error");
         else await JS.InvokeVoidAsync("doBeauty", InputJson);
+    }
+
+    
+    private async Task PrintJson()
+    {
+        if (!(await CheckJson()))
+        {
+            await Swal.FireAsync("Oops...","JSON is not valid, please fix it", "error");
+            return;
+        }
+        if (!(await JsonIsArray()))
+        {
+            await Swal.FireAsync("Oops...","It works only with arrays", "error");
+            return;
+        }
+
+        object distinctJsonKeys = await JS.InvokeAsync<dynamic>("getArrayKeys");
+        await JS.InvokeVoidAsync("printJson", distinctJsonKeys);
     }
 }
