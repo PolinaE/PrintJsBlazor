@@ -1,0 +1,29 @@
+.flex-row-inp[b-n6doxn1gkk] {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    place-items: center;
+}
+#editor1[b-n6doxn1gkk], #inp[b-n6doxn1gkk] {
+    height:30em; 
+    width:30em;
+}
+#editor1[b-n6doxn1gkk] {
+    border-radius: var(--bs-border-radius);
+    cursor: none;
+}
+button.print-json[b-n6doxn1gkk] {
+    float: right;
+    margin-top: 1em;
+}
+button.transmit-json[b-n6doxn1gkk]{
+    border:0;
+    background-color: transparent;
+}
+button.transmit-json:hover[b-n6doxn1gkk]{
+    background-color: rgba(128, 128, 128, 0.1);
+}
+textarea[b-n6doxn1gkk] {
+    resize: none;
+}

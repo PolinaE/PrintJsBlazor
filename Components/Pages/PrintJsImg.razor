@@ -1,0 +1,41 @@
+@page "/print-js-img"
+@inject IJSRuntime JS
+@rendermode InteractiveServer
+
+<div class="container" >
+    <h3>Print Image</h3>
+
+    <div class="card" style="width: 30rem;">
+
+        <img src="../static/foto.jpg" class="card-img-top" alt="image">
+        <div class="card-body">
+            <h5 class="card-title">You can print header for image: </h5>
+            <input class="form-control" type="text" name="header" id="header" @bind-value="HeaderImage" />
+            <button class="btn btn-dark" type="button" @onclick="PrintImg">
+                Print Form
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+
+@code {
+
+    private string HeaderImage { get; set; } = "";
+    private async Task PrintImg()
+    {
+        var paramsPrintJS = new Dictionary<string, string>();
+            paramsPrintJS.Add("printable", "../static/foto.jpg");
+            paramsPrintJS.Add("type", "image");
+
+        if (!string.IsNullOrEmpty(HeaderImage))
+        {
+            paramsPrintJS.Add("header", HeaderImage);
+
+        }
+        await JS.InvokeVoidAsync("printJS", paramsPrintJS);
+    }
+
+}

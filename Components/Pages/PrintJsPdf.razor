@@ -1,0 +1,23 @@
+﻿@page "/print-js-pdf"
+@inject IJSRuntime JS
+@rendermode InteractiveServer
+
+<div class="container" >
+
+    <h3>Let's print PDF</h3>
+
+    <button class="btn btn-dark" type="button" @onclick="PrintPdf">
+        Print PDF
+    </button>
+
+</div>
+
+
+@code {
+
+    private async Task PrintPdf()
+    {
+        await JS.InvokeVoidAsync("printJS", "../static/Antoinette Moses - Frozen Pizza.pdf");
+    }
+
+}

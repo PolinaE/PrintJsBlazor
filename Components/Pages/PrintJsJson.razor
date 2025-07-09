@@ -1,0 +1,21 @@
+﻿@page "/print-js-json"
+
+<div class="container" >
+    
+    <h3>Let's print JSON</h3>
+    <div class="flex-row-inp">
+        
+        <textarea class="form-control" name="to-json"  id="inp" />
+        
+        <button class="transmit-json" title="Transmit json to beauty view" type="button" onclick="doBeauty()">
+            <img src="../static/icons/transmit.svg"/>
+        </button>
+
+        <json-editor id='editor1'></json-editor>
+    
+    </div> 
+         
+    <button class="btn btn-dark print-json" type="button" onclick="printJson()">
+        Print JSON
+    </button>
+</div>

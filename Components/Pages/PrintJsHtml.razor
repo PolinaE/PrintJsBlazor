@@ -1,0 +1,33 @@
+﻿@page "/print-js-html"
+@inject IJSRuntime JS
+@rendermode InteractiveServer
+
+<div class="container" >
+    <h3>Let's print Html</h3>
+
+    <form id="printJS-form">
+       <div class="mb-3" >
+            <label class="form-label"  for="name">Enter your name: </label>
+            <input class="form-control" type="text" name="name" id="name" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="email">Enter your email: </label>
+            <input class="form-control" type="email" name="email" id="email" required />
+        </div>
+    </form>
+
+    <button class="btn btn-dark" type="button" @onclick="PrintForm">
+        Print Form
+    </button>
+</div>
+
+
+
+@code {
+
+    private async Task PrintForm()
+    {
+        await JS.InvokeVoidAsync("printJS", "printJS-form", "html");
+    }
+
+}
