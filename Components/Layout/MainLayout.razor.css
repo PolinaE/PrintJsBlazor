@@ -90,18 +90,18 @@ main {
     z-index: 1000;
 }
 
-    #blazor-error-ui .dismiss {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
-  .footer {
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
+.footer {
     display: flex;
-            justify-content: center;
-            padding: 20px;
-            position:absolute;
-            width:100%;
-            bottom:0px;
-        }
+    justify-content: center;
+    padding: 20px;
+    position:absolute;
+    width:100%;
+    bottom:0px;
+}
 

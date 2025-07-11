@@ -1,5 +1,5 @@
 ﻿@page "/print-js-pdf"
-@inject IJSRuntime JS
+@inject IJSRuntime Js
 @rendermode InteractiveServer
 
 <div class="container" >
@@ -17,7 +17,7 @@
 
     private async Task PrintPdf()
     {
-        await JS.InvokeVoidAsync("printJS", "../static/Antoinette Moses - Frozen Pizza.pdf");
+        await Js.InvokeVoidAsync("printJS", "../static/Antoinette Moses - Frozen Pizza.pdf");
     }
 
 }

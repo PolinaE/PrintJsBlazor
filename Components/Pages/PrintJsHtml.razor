@@ -1,5 +1,5 @@
 ﻿@page "/print-js-html"
-@inject IJSRuntime JS
+@inject IJSRuntime Js
 @rendermode InteractiveServer
 
 <div class="container" >
@@ -27,7 +27,7 @@
 
     private async Task PrintForm()
     {
-        await JS.InvokeVoidAsync("printJS", "printJS-form", "html");
+        await Js.InvokeVoidAsync("printJS", "printJS-form", "html");
     }
 
 }

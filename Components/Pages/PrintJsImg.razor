@@ -1,5 +1,5 @@
 @page "/print-js-img"
-@inject IJSRuntime JS
+@inject IJSRuntime Js
 @rendermode InteractiveServer
 
 <div class="container" >
@@ -26,16 +26,18 @@
     private string HeaderImage { get; set; } = "";
     private async Task PrintImg()
     {
-        var paramsPrintJS = new Dictionary<string, string>();
-            paramsPrintJS.Add("printable", "../static/foto.jpg");
-            paramsPrintJS.Add("type", "image");
+        var paramsPrintJs = new Dictionary<string, string>
+        {
+            { "printable", "../static/foto.jpg" },
+            { "type", "image" }
+        };
 
         if (!string.IsNullOrEmpty(HeaderImage))
         {
-            paramsPrintJS.Add("header", HeaderImage);
+            paramsPrintJs.Add("header", HeaderImage);
 
         }
-        await JS.InvokeVoidAsync("printJS", paramsPrintJS);
+        await Js.InvokeVoidAsync("printJS", paramsPrintJs);
     }
 
 }
