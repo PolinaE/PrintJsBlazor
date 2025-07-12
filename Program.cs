@@ -1,5 +1,6 @@
 using CurrieTechnologies.Razor.SweetAlert2;
 using PrintJsBlazor.Components;
+using PrintJsBlazor.Wrappers.LogWrapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddSweetAlert2();
+builder.Services.AddSingleton<ConsoleWrapper>();
+builder.Services.AddScoped<WebConsoleWrapper>();
+builder.Services.AddScoped<WebAlertWrapper>();
 
 var app = builder.Build();
 
